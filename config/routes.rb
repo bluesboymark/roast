@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   root 'posts#index'
+
+  resources :users
   get 'posts/' => 'posts#index', as: :posts
+
+  get 'posts/new' => 'posts#new', as: :new_post
+
+  post 'posts/' => 'posts#create'
 
   get 'posts/:id' => 'posts#show', as: :post
 
-  get 'posts/new'
 
-  get 'posts/create'
+  get 'posts/create' => 'posts#create', as: :posts_create
 
   get 'posts/edit'
 
@@ -15,7 +20,7 @@ Rails.application.routes.draw do
   get 'posts/destroy'
 
 
-  resources :user
+
   # get 'users/index' => 'users#index', as: :products
   #
   # get 'users/show' => 'users#show', as :show

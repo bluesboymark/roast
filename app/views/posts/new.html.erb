@@ -1,2 +1,13 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h1>Post a Roast!</h1>
+<p>title:</p>
+<br>
+<%= form_for @post do |f|%>
+<%= f.text_field :title, :required => true, placeholder: "Roast title" %>
+<br>
+<br>
+<p>description:</p>
+<br>
+<%= f.text_area :description, :required => true, placeholder: "Roast description" %>
+<br>
+<%= f.submit %>
+<% end %>
