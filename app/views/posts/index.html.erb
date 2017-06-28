@@ -13,7 +13,7 @@
 
 
 <p>Roast someone!</p>
-<ul class="list-group">
+<ul>
   <% @posts.each do |p| %>
   <li> <%= link_to (p.description), post_path(p) %> by <%=p.user.first_name%> <%=p.user.last_name%></li>
   <% end %>

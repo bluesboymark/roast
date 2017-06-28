@@ -1,1 +1,10 @@
-<%= current_user.first_name%>
+<h1><%= @post.title %></h1>
+<h2>By: <%= @post.user.first_name %> <%= @post.user.last_name %></h2>
+<p><%= @post.description %></p>
+<h2>Comments:</h2>
+<ul>
+  <% @comments.each do |c| %>
+  <li> <%= link_to (c.body), post_path(p) %> by <%=p.user.first_name%> <%=p.user.last_name%></li>
+  <% end %>
+</ul>
+<p>Popular roasts</p>
