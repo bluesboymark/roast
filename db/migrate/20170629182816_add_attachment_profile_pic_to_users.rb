@@ -1,4 +1,4 @@
-class AddAttachmentProfilePicToUsers < ActiveRecord::Migration[5.1]
+class AddAttachmentProfilePicToUsers < ActiveRecord::Migration
   def self.up
     change_table :users do |t|
       t.attachment :profile_pic

@@ -1,10 +1,29 @@
 <h1><%= @post.title %></h1>
 <h2>By: <%= @post.user.first_name %> <%= @post.user.last_name %></h2>
 <p><%= @post.description %></p>
-<h2>Comments:</h2>
-<ul>
-  <% @comments.each do |c| %>
-  <li> <%= link_to (c.body), post_path(p) %> by <%=p.user.first_name%> <%=p.user.last_name%></li>
+
+<% if @post.user.id == current_user.id %>
+  <button><%=link_to 'Delete post', post_destroy_path(@post.id),method: :delete,data: {confirm:"Are you sure?"}%></button>
+<% end %>
+
+
+
+<% @post.comments.each do |c|%>
+  <%= c.user.first_name%> <%= c.user.last_name%>:
+  <%= c.body%>
+  <% if c.user.id == current_user.id || @post.user.id == current_user.id  %>
+    <%=button_to 'Delete comment', comment_destroy_path(c.id),method: :delete,data: {confirm:"Are you sure?"}%>
   <% end %>
-</ul>
-<p>Popular roasts</p>
+<% end %>
+
+<% if logged_in %>
+<hr>
+  <h3>add a comment:</h3>
+  <br>
+  <%= form_for @comment do |f| %>
+  <%= f.text_area :body%>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <br>
+  <%= f.submit%>
+<% end %>
+<% end %>

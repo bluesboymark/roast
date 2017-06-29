@@ -1,17 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/index'
-
-  get 'comments/show'
-
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'comments/edit'
-
-  get 'comments/update'
-
-  get 'comments/destroy'
 
   root 'posts#index'
 
@@ -31,8 +18,21 @@ Rails.application.routes.draw do
 
   get 'posts/update'
 
-  get 'posts/destroy'
+  delete 'posts/:id' => 'posts#destroy', as: :post_destroy
 
+  get 'comments/' => 'comments#index', as: :comments
+
+  get 'comments/show'
+
+  get 'comments/new' => 'comments#new', as: :new_comment
+
+  post 'comments/' => 'comments#create'
+
+  get 'comments/edit'
+
+  get 'comments/update'
+
+  delete 'comments/:id' => 'comments#destroy', as: :comment_destroy
 
 
   # get 'users/index' => 'users#index', as: :products

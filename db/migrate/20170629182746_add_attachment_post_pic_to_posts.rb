@@ -1,4 +1,4 @@
-class AddAttachmentPostPicToPosts < ActiveRecord::Migration[5.1]
+class AddAttachmentPostPicToPosts < ActiveRecord::Migration
   def self.up
     change_table :posts do |t|
       t.attachment :post_pic

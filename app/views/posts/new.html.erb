@@ -2,12 +2,14 @@
 <p>title:</p>
 <br>
 <%= form_for @post do |f|%>
-<%= f.file_field :title, :required => true, placeholder: "Roast title" %>
+<%= f.text_field :title, :required => true, placeholder: "Roast title" %>
 <br>
 <br>
 <p>description:</p>
 <br>
 <%= f.text_area :description, :required => true, placeholder: "Roast description" %>
 <br>
+<%= f.label :post_pic, 'Picture:' %>
+<%= f.file_field :post_pic, placeholder: "Picture" %>
 <%= f.submit %>
 <% end %>

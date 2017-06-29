@@ -12,9 +12,15 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @post = Post.find(params[:comment][:post_id])
     @comment = Comment.new(comment_params)
+    @comment.post = @post
+
     if @comment.save
       redirect_to post_path(@post)
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   def edit
@@ -24,9 +30,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to post_path
   end
 
   def comment_params
-    ({body: params[:post][:body], user_id: current_user.id})
+    ({body: params[:comment][:body], user_id: current_user.id})
   end
 end
