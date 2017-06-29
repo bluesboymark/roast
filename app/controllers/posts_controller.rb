@@ -15,6 +15,7 @@ before_action :authorize, only: [:new, :create]
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post)
     end
@@ -28,7 +29,7 @@ before_action :authorize, only: [:new, :create]
   def update
     @post=Post.find(params[:id])
     @post.update_attributes(post_params)
-    redirect_to post_path
+    redirect_to post_path(@post)
   end
 
   def destroy
@@ -40,6 +41,7 @@ before_action :authorize, only: [:new, :create]
 
   private
   def post_params
-    ({title: params[:post][:title], description: params[:post][:description], user_id: current_user.id})
+    params.require(:post).permit(:title, :description, :image, :post_pic)
+    # ({title: params[:post][:title], description: params[:post][:description], user_id: current_user.id})
   end
 end
