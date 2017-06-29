@@ -21,9 +21,14 @@ before_action :authorize, only: [:new, :create]
   end
 
   def edit
+    @post=Post.find(params[:id])
+    @post.inspect
   end
 
   def update
+    @post=Post.find(params[:id])
+    @post.update_attributes(post_params)
+    redirect_to post_path
   end
 
   def destroy
@@ -32,6 +37,8 @@ before_action :authorize, only: [:new, :create]
     @post.destroy
     redirect_to root_path
   end
+
+  private
   def post_params
     ({title: params[:post][:title], description: params[:post][:description], user_id: current_user.id})
   end
