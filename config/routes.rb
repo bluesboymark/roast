@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :posts
+  resources :comments
   # get 'posts/' => 'posts#index', as: :posts
   #
   # get 'posts/new' => 'posts#new', as: :new_post
@@ -20,19 +21,19 @@ Rails.application.routes.draw do
   #
   # delete 'posts/:id' => 'posts#destroy', as: :post_destroy
 
-  get 'comments/' => 'comments#index', as: :comments
-
-  get 'comments/show'
-
-  get 'comments/new' => 'comments#new', as: :new_comment
-
-  post 'comments/' => 'comments#create'
-
-  get 'comments/edit'
-
-  get 'comments/update'
-
-  delete 'comments/:id' => 'comments#destroy', as: :comment_destroy
+  # get 'comments/' => 'comments#index', as: :comments
+  #
+  # get 'comments/show'
+  #
+  # get 'comments/new' => 'comments#new', as: :new_comment
+  #
+  # post 'comments/' => 'comments#create'
+  #
+  # get 'comments/edit'
+  #
+  # get 'comments/update'
+  #
+  # delete 'comments/:id' => 'comments#destroy', as: :comment_destroy
 
 
   # get 'users/index' => 'users#index', as: :products
