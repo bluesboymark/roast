@@ -10,11 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628205317) do
+ActiveRecord::Schema.define(version: 20170629182816) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comment_votes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comment_id"
+    t.bigint "user_id"
+    t.bigint "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_comment_votes_on_comment_id"
@@ -23,17 +26,17 @@ ActiveRecord::Schema.define(version: 20170628205317) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "post_id"
+    t.bigint "post_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.text "description"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
@@ -58,4 +61,9 @@ ActiveRecord::Schema.define(version: 20170628205317) do
     t.datetime "profile_pic_updated_at"
   end
 
+  add_foreign_key "comment_votes", "comments"
+  add_foreign_key "comment_votes", "users"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "posts", "users"
 end
