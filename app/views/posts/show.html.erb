@@ -1,9 +1,10 @@
 <h1><%= @post.title %></h1>
 <h2>By: <%= @post.user.first_name %> <%= @post.user.last_name %></h2>
 <p><%= @post.description %></p>
-
+<%= image_tag @post.post_pic %>
 <% if @post.user.id == current_user.id %>
-  <button><%=link_to 'Delete post', post_destroy_path(@post.id),method: :delete,data: {confirm:"Are you sure?"}%></button>
+  <%=button_to 'Edit Post', edit_post_path(@post.id), method: :get%>
+  <button><%=link_to 'Delete post', @post, method: :delete, data: {confirm:"Are you sure?"}%></button>
 <% end %>
 
 
@@ -12,7 +13,7 @@
   <%= c.user.first_name%> <%= c.user.last_name%>:
   <%= c.body%>
   <% if c.user.id == current_user.id || @post.user.id == current_user.id  %>
-    <%=button_to 'Delete comment', comment_destroy_path(c.id),method: :delete,data: {confirm:"Are you sure?"}%>
+    <%=button_to 'Delete comment', comment_path(c)+'?post='+@post.id.to_s, method: :delete%>
   <% end %>
 <% end %>
 
@@ -26,4 +27,6 @@
   <br>
   <%= f.submit%>
 <% end %>
+
+<button><%= link_to 'Go Home', root_path  %></button>
 <% end %>

@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_attached_file :post_pic,
-                    styles: { medium: "500x500#", thumb: "100x100#" }
+                    styles: { medium: "500x500#", thumb: "100x100#" },
                     storage: :s3,
                     url: ":s3_domain_url",
                     path: "/:class/:attachment/:id_partition/:style/:filename",
